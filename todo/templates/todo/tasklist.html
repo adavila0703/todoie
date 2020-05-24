@@ -1,0 +1,19 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+<p>
+<h1>Your Current Tasks</h1>
+</p>
+<br><br>
+
+{%for task in tasks%}
+    <span class="dot">
+    <a href="{%url 'viewtask' task.id%}">
+    {% if task.important %}<b>{%endif%}{{a}}{% if task.important %}</b>{%endif%}{{task}}
+        {%if task.memo%} - {{ task.memo }}{%endif%}
+    </a>
+    <br><br>
+        </span>
+{%endfor%}
+
+{% endblock %}

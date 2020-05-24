@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<title>todoie</title>
+<html>
+<head>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #4CAF50;
+}
+</style>
+</head>
+<body>
+
+      <ul>
+          <li><a href="{%url 'home'%}">Home</a></li>
+          <li><a href="{%url 'createtask'%}">Create a Task</a></li>
+          <li><a href="{%url 'tasklist'%}">View Tasks</a></li>
+          <li><a href="{%url 'completed'%}">Completed Tasks</a></li>
+
+         {% if user.is_authenticated %}
+
+        <form action="{% url 'logoutuser' %}" method="POST">
+        <li style="float:right">Hello {{user.username}}</li>
+            <br>
+            {% csrf_token %}
+            <li style="float:right"><button type="submit">Logout</button></li>
+        </form>
+        {% else %}
+          <li style="float:right"><a href="{% url 'signupuser' %}">Sign Up</a></li>
+          <li style="float:right"><a href="{% url 'loginuser' %}">Login</a></li>
+        {% endif %}
+      </ul>
+
+
+
+
+{% block content %}
+{% endblock %}

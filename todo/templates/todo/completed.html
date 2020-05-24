@@ -1,0 +1,17 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+<p>
+<h1>Your Completed Tasks</h1>
+</p>
+<br><br>
+
+{%for todo in todos%}
+    <a href="{%url 'viewtask' todo.id%}">
+        {% if todo.important %}<b>{%endif%}{{todo}}{% if todo.important %}</b>{%endif%}{{todo}}
+        <br>Completed   on {{ todo.datecompleted|date:'M j Y H:i' }}
+    </a>
+    <br><br>
+{%endfor%}
+
+{% endblock %}
